@@ -24,7 +24,7 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b-2 border-border">
       <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link href="/" className="text-2xl font-bold text-foreground">
+        <Link href="/" className="text-[1.625rem] font-bold text-foreground">
           Koen Sakamoto
         </Link>
 
@@ -34,7 +34,7 @@ export function Header() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="px-4 py-2 text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-colors rounded"
+                  className="px-4 py-2 text-[1.0625rem] font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-colors rounded"
                 >
                   {item.label}
                 </Link>
