@@ -30,8 +30,9 @@ export function ProjectImages({ images, title }: ProjectImagesProps) {
             <Image
               src={img}
               alt={`${title} screenshot ${i + 1}`}
-              height={384}
-              width={180}
+              width={1242}
+              height={2688}
+              sizes="(max-width: 640px) 100px, (max-width: 768px) 140px, (max-width: 1024px) 180px, 220px"
               className="h-64 sm:h-80 md:h-96 lg:h-[26rem] w-auto object-contain"
             />
           </button>

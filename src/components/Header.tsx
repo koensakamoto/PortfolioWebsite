@@ -2,6 +2,7 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const navItems = [
   { label: "About", href: "/about" },
@@ -22,22 +23,21 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b-2 border-border">
-      <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" className="text-xl font-bold text-foreground">
+      <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+        <Link href="/" className="text-2xl font-bold text-foreground">
           Koen Sakamoto
-        </a>
+        </Link>
 
         <nav className="flex items-center gap-4">
-          <ul className="hidden sm:flex items-center gap-1">
+          <ul className="hidden sm:flex items-center gap-2">
             {navItems.map((item) => (
               <li key={item.href}>
-                <a
+                <Link
                   href={item.href}
-                  {...(item.download ? { download: true } : {})}
-                  className="px-4 py-2 text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-colors rounded"
+                  className="px-4 py-2 text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-colors rounded"
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -85,14 +85,13 @@ export function Header() {
           <ul className="flex flex-col p-4 gap-2">
             {navItems.map((item) => (
               <li key={item.href}>
-                <a
+                <Link
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
-                  {...(item.download ? { download: true } : {})}
                   className="block px-4 py-3 text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-colors rounded border-2 border-border shadow-[2px_2px_0px_0px] shadow-shadow"
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

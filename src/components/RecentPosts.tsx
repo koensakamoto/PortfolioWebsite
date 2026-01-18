@@ -10,7 +10,7 @@ export function RecentPosts() {
 
   return (
     <section className="py-20">
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-8">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-3xl font-bold text-foreground inline-block border-b-4 border-accent pb-2">
             Recent Posts
@@ -23,30 +23,30 @@ export function RecentPosts() {
           </Link>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post) => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="block p-5 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px] transition-all"
+              className="block p-6 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px] transition-all"
             >
-              <div className="flex flex-wrap gap-2 mb-3">
+              <div className="flex flex-wrap gap-2 mb-4">
                 {post.tags.slice(0, 2).map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-1 text-xs font-medium bg-accent text-accent-foreground rounded"
+                    className="px-3 py-1.5 text-sm font-medium bg-accent text-accent-foreground rounded"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
-              <h3 className="font-bold text-foreground mb-2 line-clamp-2">
+              <h3 className="text-lg font-bold text-foreground mb-2 line-clamp-2">
                 {post.title}
               </h3>
-              <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
+              <p className="text-muted-foreground text-base line-clamp-2 mb-4">
                 {post.excerpt}
               </p>
-              <time className="text-xs text-muted-foreground">
+              <time className="text-sm text-muted-foreground">
                 {new Date(post.date).toLocaleDateString("en-US", {
                   month: "short",
                   day: "numeric",

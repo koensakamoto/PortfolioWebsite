@@ -1,6 +1,3 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-
 export const metadata = {
   title: "Resume | Koen Sakamoto",
   description: "Professional experience and skills of Koen Sakamoto.",
@@ -58,12 +55,12 @@ const skills = {
 
 function SkillBar({ name, level }: { name: string; level: number }) {
   return (
-    <div className="mb-3">
-      <div className="flex justify-between text-sm mb-1">
+    <div className="mb-4">
+      <div className="flex justify-between text-base mb-2">
         <span className="font-medium text-foreground">{name}</span>
         <span className="text-muted-foreground">{level}%</span>
       </div>
-      <div className="h-2 bg-muted rounded-full border border-border overflow-hidden">
+      <div className="h-3 bg-muted rounded-full border border-border overflow-hidden">
         <div
           className="h-full bg-accent rounded-full transition-all duration-500"
           style={{ width: `${level}%` }}
@@ -75,21 +72,19 @@ function SkillBar({ name, level }: { name: string; level: number }) {
 
 export default function ResumePage() {
   return (
-    <>
-      <Header />
-      <main className="min-h-screen pt-24 pb-16">
-        <div className="max-w-4xl mx-auto px-6">
+    <main className="flex-1 pt-32 pb-24">
+        <div className="max-w-5xl mx-auto px-8">
           {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-12">
-            <h1 className="text-4xl font-bold text-foreground inline-block border-b-4 border-accent pb-2">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-16">
+            <h1 className="text-5xl font-bold text-foreground inline-block border-b-4 border-accent pb-3">
               Resume
             </h1>
             <a
               href="/resume.pdf"
               download
-              className="inline-flex items-center gap-2 px-4 py-2 bg-accent text-accent-foreground font-medium rounded border-2 border-border shadow-[4px_4px_0px_0px] shadow-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px] transition-all"
+              className="inline-flex items-center gap-3 px-5 py-3 text-lg bg-accent text-accent-foreground font-medium rounded-lg border-2 border-border shadow-[4px_4px_0px_0px] shadow-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px] transition-all"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
@@ -99,17 +94,17 @@ export default function ResumePage() {
           </div>
 
           {/* Education */}
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Education</h2>
-            <div className="p-5 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow">
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
+          <section className="mb-16">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Education</h2>
+            <div className="p-6 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-3">
                 <div>
-                  <h3 className="font-bold text-lg text-foreground">University of Utah</h3>
-                  <p className="text-accent">Bachelor of Science in Computer Science</p>
+                  <h3 className="font-bold text-xl text-foreground">University of Utah</h3>
+                  <p className="text-accent text-lg">Bachelor of Science in Computer Science</p>
                 </div>
-                <span className="text-sm text-muted-foreground">Expected May 2027</span>
+                <span className="text-base text-muted-foreground">Expected May 2027</span>
               </div>
-              <p className="text-sm text-muted-foreground mt-3">
+              <p className="text-base text-muted-foreground mt-4">
                 <span className="font-medium">Relevant Coursework:</span> Data Structures & Algorithms,
                 Database Systems, Software Practices, Computer Security, Computer Organization, Computer Systems
               </p>
@@ -117,27 +112,27 @@ export default function ResumePage() {
           </section>
 
           {/* Experience */}
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Experience</h2>
-            <div className="space-y-4">
+          <section className="mb-16">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Experience</h2>
+            <div className="space-y-6">
               {experience.map((job) => (
                 <div
                   key={job.title + job.company}
-                  className="p-5 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow"
+                  className="p-6 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow"
                 >
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-4">
                     <div>
-                      <h3 className="font-bold text-lg text-foreground">{job.title}</h3>
-                      <p className="text-accent">{job.company}</p>
+                      <h3 className="font-bold text-xl text-foreground">{job.title}</h3>
+                      <p className="text-accent text-lg">{job.company}</p>
                     </div>
-                    <div className="text-sm text-muted-foreground sm:text-right">
+                    <div className="text-base text-muted-foreground sm:text-right">
                       <p>{job.date}</p>
                       <p>{job.location}</p>
                     </div>
                   </div>
-                  <ul className="space-y-2">
+                  <ul className="space-y-3">
                     {job.points.map((point, i) => (
-                      <li key={i} className="text-sm text-muted-foreground flex gap-2">
+                      <li key={i} className="text-base text-muted-foreground flex gap-3">
                         <span className="text-accent shrink-0">–</span>
                         <span>{point}</span>
                       </li>
@@ -149,23 +144,23 @@ export default function ResumePage() {
           </section>
 
           {/* Skills */}
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Technical Skills</h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="p-5 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow">
-                <h3 className="font-bold text-foreground mb-4">Languages</h3>
+          <section className="mb-16">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Technical Skills</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="p-6 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow">
+                <h3 className="font-bold text-lg text-foreground mb-5">Languages</h3>
                 {skills.languages.map((skill) => (
                   <SkillBar key={skill.name} name={skill.name} level={skill.level} />
                 ))}
               </div>
-              <div className="p-5 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow">
-                <h3 className="font-bold text-foreground mb-4">Frameworks</h3>
+              <div className="p-6 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow">
+                <h3 className="font-bold text-lg text-foreground mb-5">Frameworks</h3>
                 {skills.frameworks.map((skill) => (
                   <SkillBar key={skill.name} name={skill.name} level={skill.level} />
                 ))}
               </div>
-              <div className="p-5 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow">
-                <h3 className="font-bold text-foreground mb-4">Tools</h3>
+              <div className="p-6 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow">
+                <h3 className="font-bold text-lg text-foreground mb-5">Tools</h3>
                 {skills.tools.map((skill) => (
                   <SkillBar key={skill.name} name={skill.name} level={skill.level} />
                 ))}
@@ -175,8 +170,8 @@ export default function ResumePage() {
 
           {/* Knowledge areas */}
           <section>
-            <h2 className="text-2xl font-bold text-foreground mb-6">Knowledge</h2>
-            <div className="flex flex-wrap gap-2">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Knowledge</h2>
+            <div className="flex flex-wrap gap-3">
               {[
                 "Full-Stack Development",
                 "REST APIs",
@@ -191,7 +186,7 @@ export default function ResumePage() {
               ].map((item) => (
                 <span
                   key={item}
-                  className="px-3 py-2 text-sm font-medium bg-background border-2 border-border rounded shadow-[2px_2px_0px_0px] shadow-shadow"
+                  className="px-4 py-2.5 text-base font-medium bg-background border-2 border-border rounded-lg shadow-[2px_2px_0px_0px] shadow-shadow"
                 >
                   {item}
                 </span>
@@ -199,8 +194,6 @@ export default function ResumePage() {
             </div>
           </section>
         </div>
-      </main>
-      <Footer />
-    </>
+    </main>
   );
 }

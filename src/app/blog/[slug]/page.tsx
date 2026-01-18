@@ -69,8 +69,8 @@ export default async function BlogPostPage({
     .join("\n");
 
   return (
-    <main className="min-h-screen pt-24 pb-16">
-      <div className="max-w-3xl mx-auto px-6">
+    <main className="flex-1 pt-32 pb-24">
+      <div className="max-w-5xl mx-auto px-8">
         <Link
           href="/blog"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"

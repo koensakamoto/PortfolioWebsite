@@ -39,7 +39,7 @@ export function About() {
       ref={ref}
       className="py-24 opacity-0 translate-y-8 transition-all duration-500 [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
     >
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-8">
         <h2 className="text-3xl font-bold text-foreground mb-8 inline-block border-b-4 border-accent pb-2">
           About Me
         </h2>

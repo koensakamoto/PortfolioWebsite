@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import Image from "next/image";
 
 type ImageLightboxProps = {
   images: string[];
@@ -84,23 +83,21 @@ export function ImageLightbox({ images, initialIndex = 0, onClose }: ImageLightb
       </button>
 
       {/* Image */}
-      <div className="relative max-h-[85vh] max-w-[90vw] z-10">
-        <Image
+      <div className="relative z-10 flex items-center justify-center px-16">
+        <img
           src={images[currentIndex]}
           alt={`Image ${currentIndex + 1}`}
-          width={600}
-          height={1200}
-          className="max-h-[85vh] w-auto object-contain rounded-lg"
+          className="h-[85vh] w-auto object-contain rounded-lg"
         />
       </div>
 
       {/* Dots */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-10">
         {images.map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrentIndex(i)}
-            className={`w-2 h-2 rounded-full transition-colors ${
+            className={`w-3 h-3 rounded-full transition-colors ${
               i === currentIndex ? "bg-white" : "bg-white/40 hover:bg-white/60"
             }`}
             aria-label={`Go to image ${i + 1}`}

@@ -1,5 +1,3 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { ProjectImages } from "@/components/ProjectImages";
 import Link from "next/link";
 import Image from "next/image";
@@ -18,6 +16,7 @@ type Project = {
   github?: string;
   live?: string;
   image?: string;
+  aspectRatio?: string; // Custom aspect ratio for image container
   images?: string[]; // For multiple screenshots (e.g., mobile apps)
 };
 
@@ -35,6 +34,7 @@ const projects: Project[] = [
     tags: ["FastAPI", "React", "MongoDB", "Selenium", "AWS"],
     github: "https://github.com/koensakamoto/CrimsonBites",
     image: "/crimsonbites.png",
+    aspectRatio: "16/10",
   },
   {
     title: "Rival Picks",
@@ -64,18 +64,42 @@ const projects: Project[] = [
     github: "https://github.com/koensakamoto/snake_game",
     image: "/snakegame.png",
   },
+  {
+    title: "Circuit Builder",
+    category: "Desktop Application",
+    description:
+      "An interactive digital logic simulator used by 50+ engineering students, featuring drag-and-drop circuit construction and real-time Boolean logic evaluation.",
+    features: [
+      "Containerized with Docker, deployed on AWS EC2 for cross-platform access",
+      "CI/CD pipeline with automated unit and integration tests",
+      "90% code coverage ensuring reliable circuit logic",
+    ],
+    tags: ["C++", "Qt", "Box2D", "Docker", "AWS"],
+    github: "https://github.com/koensakamoto/CircuitBuilder",
+  },
+  {
+    title: "Sprite Editor",
+    category: "Desktop Application",
+    description:
+      "A pixel art editor supporting 60 FPS multi-frame animations and 100x100 pixel canvases using Model-View architecture with custom drawing tools.",
+    features: [
+      "Flood-fill algorithm processing contiguous pixels in <50ms",
+      "Custom JSON format preserving RGBA data with 100% fidelity",
+      "Real-time preview system for animations",
+    ],
+    tags: ["C++", "Qt"],
+    github: "https://github.com/koensakamoto/Sprite-Editor",
+  },
 ];
 
 export default function ProjectsPage() {
   return (
-    <>
-      <Header />
-      <main className="min-h-screen pt-24 pb-16">
-        <div className="max-w-4xl mx-auto px-6">
-          <h1 className="text-4xl font-bold text-foreground mb-4 inline-block border-b-4 border-accent pb-2">
+    <main className="flex-1 pt-32 pb-24">
+        <div className="max-w-5xl mx-auto px-8">
+          <h1 className="text-5xl font-bold text-foreground mb-6 inline-block border-b-4 border-accent pb-3">
             Projects
           </h1>
-          <p className="text-muted-foreground mb-12">
+          <p className="text-muted-foreground text-xl mb-16">
             A collection of things I&apos;ve built. More on{" "}
             <Link
               href="https://github.com/koensakamoto"
@@ -98,13 +122,20 @@ export default function ProjectsPage() {
                 {project.images ? (
                   <ProjectImages images={project.images} title={project.title} />
                 ) : project.image ? (
-                  <div className="relative w-full aspect-video bg-muted border-b-2 border-border">
-                    <Image
-                      src={project.image}
-                      alt={`${project.title} screenshot`}
-                      fill
-                      className="object-contain"
-                    />
+                  <div className="p-6 md:p-8 bg-muted border-b-2 border-border">
+                    <div
+                      className="relative w-full overflow-hidden rounded-lg border-2 border-border shadow-[4px_4px_0px_0px] shadow-shadow"
+                      style={{ aspectRatio: project.aspectRatio || "16/9" }}
+                    >
+                      <Image
+                        src={project.image}
+                        alt={`${project.title} screenshot`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 896px, 1024px"
+                        className="object-cover"
+                        priority={project.title === "CrimsonBites"}
+                      />
+                    </div>
                   </div>
                 ) : null}
 
@@ -185,8 +216,6 @@ export default function ProjectsPage() {
             ))}
           </div>
         </div>
-      </main>
-      <Footer />
-    </>
+    </main>
   );
 }
