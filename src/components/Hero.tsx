@@ -22,7 +22,7 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="min-h-[80vh] flex items-center pt-20"
+      className="pt-32 pb-16"
     >
       <div className="max-w-4xl mx-auto px-6 w-full">
         <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-12">

@@ -1,6 +1,8 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { ProjectImages } from "@/components/ProjectImages";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata = {
   title: "Projects | Koen Sakamoto",
@@ -9,54 +11,58 @@ export const metadata = {
 
 type Project = {
   title: string;
-  subtitle: string;
+  category: string;
   description: string;
+  features: string[];
   tags: string[];
   github?: string;
   live?: string;
-  highlights: string[];
+  image?: string;
+  images?: string[]; // For multiple screenshots (e.g., mobile apps)
 };
 
 const projects: Project[] = [
   {
     title: "CrimsonBites",
-    subtitle: "Campus Nutrition Tracking Platform",
+    category: "Web Development",
     description:
       "A nutrition tracking platform helping 150+ students make informed dietary choices by aggregating real-time menu data from campus dining halls.",
-    tags: ["FastAPI", "React", "MongoDB", "Selenium", "AWS"],
-    github: "https://github.com/koensakamoto",
-    highlights: [
-      "Engineered Selenium scraping pipeline extracting 500+ daily menu items with 98% accuracy",
-      "Created interactive dashboards with Recharts for macronutrient tracking",
-      "Deployed on AWS EC2 with S3 for static assets",
-      "Implemented JWT + Google OAuth 2.0 authentication",
+    features: [
+      "Selenium scraping pipeline extracting 500+ daily menu items",
+      "Interactive dashboards with Recharts for macronutrient tracking",
+      "JWT + Google OAuth 2.0 authentication",
     ],
+    tags: ["FastAPI", "React", "MongoDB", "Selenium", "AWS"],
+    github: "https://github.com/koensakamoto/CrimsonBites",
+    image: "/crimsonbites.png",
   },
   {
     title: "Rival Picks",
-    subtitle: "Social Betting App",
+    category: "Mobile Development",
     description:
-      "An app for friends to make friendly bets on anything from sports to personal challenges.",
-    tags: ["Spring Boot", "MySQL", "React Native", "WebSocket", "Redis"],
-    github: "https://github.com/koensakamoto",
-    highlights: [
-      "Real-time messaging with WebSocket + STOMP and Firebase Cloud Messaging",
-      "Comprehensive security with BCrypt, rate limiting, and account lockout",
-      "Database evolution with Flyway migrations and optimized indexing",
+      "A social betting app for friends to make friendly bets on anything from sports to personal challenges, with real-time messaging and stake tracking.",
+    features: [
+      "Real-time messaging with WebSocket + STOMP",
+      "Firebase Cloud Messaging for push notifications",
+      "Secure auth with BCrypt and rate limiting",
     ],
+    tags: ["Spring Boot", "MySQL", "React Native", "WebSocket", "Redis"],
+    github: "https://github.com/koensakamoto/RivalPicks",
+    images: ["/rivalpicks-profile.png", "/rivalpicks-create.png", "/rivalpicks-feed.png"],
   },
   {
     title: "Snake Game",
-    subtitle: "Real-time Multiplayer Game Server",
+    category: "Game Development",
     description:
-      "A real-time multiplayer game server supporting 80+ concurrent players with smooth gameplay.",
-    tags: ["C#", ".NET", "MySQL", "TCP/IP"],
-    github: "https://github.com/koensakamoto",
-    highlights: [
-      "TCP/IP sockets with custom protocol for collision detection and state sync",
+      "A real-time multiplayer game server supporting 80+ concurrent players with smooth 60 FPS gameplay and persistent leaderboards.",
+    features: [
+      "TCP/IP sockets with custom protocol for state sync",
+      "Multi-threading for parallel input handling",
       "Scalable MySQL backend with connection pooling",
-      "60 FPS gameplay with multi-threading for parallel input handling",
     ],
+    tags: ["C#", ".NET", "MySQL", "TCP/IP"],
+    github: "https://github.com/koensakamoto/snake_game",
+    image: "/snakegame.png",
   },
 ];
 
@@ -82,32 +88,85 @@ export default function ProjectsPage() {
             .
           </p>
 
-          <div className="space-y-6">
+          <div className="space-y-12">
             {projects.map((project) => (
-              <div
+              <article
                 key={project.title}
-                className="p-6 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow"
+                className="border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow overflow-hidden"
               >
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
-                  <div>
-                    <h2 className="text-xl font-bold text-foreground">
-                      {project.title}
-                    </h2>
-                    <p className="text-sm text-accent">{project.subtitle}</p>
+                {/* Image(s) - Full width at top */}
+                {project.images ? (
+                  <ProjectImages images={project.images} title={project.title} />
+                ) : project.image ? (
+                  <div className="relative w-full aspect-video bg-muted border-b-2 border-border">
+                    <Image
+                      src={project.image}
+                      alt={`${project.title} screenshot`}
+                      fill
+                      className="object-contain"
+                    />
                   </div>
-                  <div className="flex gap-2 shrink-0">
+                ) : null}
+
+                {/* Content */}
+                <div className="p-6 md:p-8">
+                  {/* Category */}
+                  <span className="text-xs font-bold uppercase tracking-wider text-accent">
+                    {project.category}
+                  </span>
+
+                  {/* Title */}
+                  <h2 className="text-2xl font-bold text-foreground mt-2 mb-3">
+                    {project.title}
+                  </h2>
+
+                  {/* Description */}
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  {/* Key Features */}
+                  <div className="mb-6">
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-foreground mb-3">
+                      Key Features
+                    </h3>
+                    <ul className="space-y-2">
+                      {project.features.map((feature, i) => (
+                        <li key={i} className="flex gap-3 text-sm text-muted-foreground">
+                          <span className="text-accent shrink-0">—</span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Tech Stack */}
+                  <div className="mb-6">
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-foreground mb-3">
+                      Tech Stack
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-3 py-1 text-sm font-medium bg-muted text-foreground rounded border border-border"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-wrap gap-3">
                     {project.github && (
                       <a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 border-2 border-border rounded hover:bg-accent hover:text-accent-foreground transition-colors"
-                        aria-label="View code"
+                        className="px-5 py-2.5 bg-foreground text-background font-semibold rounded border-2 border-border shadow-[3px_3px_0px_0px] shadow-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_0px] transition-all"
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                          <path d="M9 18c-4.51 2-5-2-7-2" />
-                        </svg>
+                        View Code
                       </a>
                     )}
                     {project.live && (
@@ -115,43 +174,14 @@ export default function ProjectsPage() {
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 border-2 border-border rounded hover:bg-accent hover:text-accent-foreground transition-colors"
-                        aria-label="View live"
+                        className="px-5 py-2.5 bg-accent text-accent-foreground font-semibold rounded border-2 border-border shadow-[3px_3px_0px_0px] shadow-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_0px] transition-all"
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                          <polyline points="15 3 21 3 21 9" />
-                          <line x1="10" y1="14" x2="21" y2="3" />
-                        </svg>
+                        Live Demo
                       </a>
                     )}
                   </div>
                 </div>
-
-                <p className="text-muted-foreground mb-4">
-                  {project.description}
-                </p>
-
-                <ul className="space-y-2 mb-4">
-                  {project.highlights.map((highlight, i) => (
-                    <li key={i} className="text-sm text-muted-foreground flex gap-2">
-                      <span className="text-accent shrink-0">•</span>
-                      <span>{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 text-xs font-medium bg-accent text-accent-foreground rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
