@@ -168,6 +168,45 @@ export default function ResumePage() {
             </div>
           </section>
 
+          {/* Certifications */}
+          <section className="mb-16">
+            <h2 className="text-3xl font-bold text-foreground mb-8">Certifications</h2>
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="p-6 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow">
+                <div className="flex justify-between items-start gap-4">
+                  <div>
+                    <h3 className="font-bold text-xl text-foreground">CompTIA Security+</h3>
+                    <p className="text-base text-muted-foreground mt-1">Issued Aug 2025 · ID: K1GB2XY57MRE5W9J</p>
+                  </div>
+                  <a
+                    href="https://cp.certmetrics.com/CompTIA/en/public/verify/credential"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-base text-accent font-medium hover:underline shrink-0"
+                  >
+                    Verify
+                  </a>
+                </div>
+              </div>
+              <div className="p-6 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow">
+                <div className="flex justify-between items-start gap-4">
+                  <div>
+                    <h3 className="font-bold text-xl text-foreground">CompTIA Network+</h3>
+                    <p className="text-base text-muted-foreground mt-1">Issued Aug 2025 · ID: PLFKQ6Y4EBQ1V42</p>
+                  </div>
+                  <a
+                    href="https://cp.certmetrics.com/CompTIA/en/public/verify/credential"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-base text-accent font-medium hover:underline shrink-0"
+                  >
+                    Verify
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Knowledge areas */}
           <section>
             <h2 className="text-3xl font-bold text-foreground mb-8">Knowledge</h2>

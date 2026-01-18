@@ -44,7 +44,7 @@ export function Header() {
 
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2 border-2 border-border rounded bg-background hover:bg-muted transition-colors shadow-[2px_2px_0px_0px] shadow-shadow active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+            className="p-2 border-2 border-border rounded bg-background hover:bg-muted transition-colors shadow-[2px_2px_0px_0px] shadow-shadow active:translate-x-[2px] active:translate-y-[2px] active:shadow-none cursor-pointer"
             aria-label="Toggle theme"
           >
             {mounted ? (
@@ -65,7 +65,7 @@ export function Header() {
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="sm:hidden p-2 border-2 border-border rounded bg-background hover:bg-muted transition-colors shadow-[2px_2px_0px_0px] shadow-shadow"
+            className="sm:hidden p-2 border-2 border-border rounded bg-background hover:bg-muted transition-colors shadow-[2px_2px_0px_0px] shadow-shadow cursor-pointer"
             aria-label="Toggle menu"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

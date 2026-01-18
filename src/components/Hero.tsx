@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -43,18 +44,19 @@ export function Hero() {
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-5 leading-tight">
               Koen Sakamoto
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-xl">
-              CS student exploring the boundary between software and hardware.
-              Currently studying computer science, planning to pursue electrical
-              engineering. I like building things that work.
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
+              CS student at the University of Utah. I build things that work.
             </p>
-            <a
-              href="/resume.pdf"
-              download
-              className="inline-block px-7 py-3.5 text-lg bg-accent text-accent-foreground font-semibold rounded-lg border-2 border-border shadow-[4px_4px_0px_0px] shadow-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px] transition-all"
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-1 mt-4 text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
-              Resume
-            </a>
+              Learn more
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </Link>
           </div>
         </div>
       </div>

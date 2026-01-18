@@ -19,18 +19,18 @@ export default function Home() {
               <p className="text-base text-muted-foreground">See what I&apos;ve built</p>
             </Link>
             <Link
-              href="/blog"
+              href="/resume"
               className="p-8 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px] transition-all text-center"
             >
-              <h3 className="text-lg font-bold text-foreground mb-2">Blog</h3>
-              <p className="text-base text-muted-foreground">Thoughts & learnings</p>
+              <h3 className="text-lg font-bold text-foreground mb-2">Resume</h3>
+              <p className="text-base text-muted-foreground">Experience & skills</p>
             </Link>
             <Link
-              href="/about"
+              href="/contact"
               className="p-8 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px] transition-all text-center"
             >
-              <h3 className="text-lg font-bold text-foreground mb-2">About</h3>
-              <p className="text-base text-muted-foreground">Learn more about me</p>
+              <h3 className="text-lg font-bold text-foreground mb-2">Contact</h3>
+              <p className="text-base text-muted-foreground">Get in touch</p>
             </Link>
           </div>
         </div>
