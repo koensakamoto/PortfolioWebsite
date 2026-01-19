@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 export function Contact() {
   const ref = useRef<HTMLElement>(null);
@@ -12,6 +13,7 @@ export function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
   );
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -34,10 +36,34 @@ export function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!turnstileToken) {
+      setStatus("error");
+      return;
+    }
+
     setStatus("sending");
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setStatus("sent");
-    setFormState({ name: "", email: "", message: "" });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formState,
+          turnstileToken,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send");
+      }
+
+      setStatus("sent");
+      setFormState({ name: "", email: "", message: "" });
+      setTurnstileToken(null);
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -136,6 +162,15 @@ export function Contact() {
               rows={4}
               className="w-full px-4 py-3 border-2 border-border rounded-lg bg-background focus:outline-none focus:border-accent transition-colors resize-none"
             />
+            <Turnstile
+              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+              onSuccess={setTurnstileToken}
+            />
+            {status === "error" && (
+              <p className="text-red-500 text-sm">
+                Something went wrong. Please try again.
+              </p>
+            )}
             <button
               type="submit"
               disabled={status === "sending"}

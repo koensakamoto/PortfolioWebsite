@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 export default function ContactPage() {
   const [formState, setFormState] = useState({
@@ -11,13 +12,38 @@ export default function ContactPage() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
   );
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!turnstileToken) {
+      setStatus("error");
+      return;
+    }
+
     setStatus("sending");
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setStatus("sent");
-    setFormState({ name: "", email: "", message: "" });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formState,
+          turnstileToken,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send");
+      }
+
+      setStatus("sent");
+      setFormState({ name: "", email: "", message: "" });
+      setTurnstileToken(null);
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -113,6 +139,15 @@ export default function ContactPage() {
                   rows={6}
                   className="w-full px-5 py-4 text-lg border-2 border-border rounded-lg bg-background focus:outline-none focus:border-accent transition-colors resize-none"
                 />
+                <Turnstile
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                  onSuccess={setTurnstileToken}
+                />
+                {status === "error" && (
+                  <p className="text-red-500 text-sm">
+                    Something went wrong. Please try again.
+                  </p>
+                )}
                 <button
                   type="submit"
                   disabled={status === "sending"}

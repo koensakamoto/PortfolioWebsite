@@ -77,6 +77,7 @@ const projects: Project[] = [
     ],
     tags: ["C++", "Qt", "Box2D", "Docker", "AWS"],
     github: "https://github.com/koensakamoto/CircuitBuilder",
+    image: "/circuit-builder.png",
   },
   {
     title: "Sprite Editor",
@@ -90,6 +91,7 @@ const projects: Project[] = [
     ],
     tags: ["C++", "Qt"],
     github: "https://github.com/koensakamoto/Sprite-Editor",
+    image: "/sprite-editor.png",
   },
 ];
 
