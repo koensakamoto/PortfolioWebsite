@@ -23,7 +23,7 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      className="pt-32 pb-16"
+      className="pt-32 pb-12"
     >
       <div className="max-w-5xl mx-auto px-8 w-full">
         <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-12">
@@ -45,7 +45,7 @@ export function Hero() {
               Koen Sakamoto
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
-              CS student at the University of Utah. I make code do cool things.
+              Computer Engineering student at the University of Utah. I make code do cool things.
             </p>
             <Link
               href="/about"

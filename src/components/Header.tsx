@@ -24,7 +24,7 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b-2 border-border">
       <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link href="/" className="text-[1.625rem] font-bold text-foreground">
+        <Link href="/" className="text-[1.625rem] font-bold text-foreground relative after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 after:bg-accent after:transition-all hover:after:w-full">
           Koen Sakamoto
         </Link>
 

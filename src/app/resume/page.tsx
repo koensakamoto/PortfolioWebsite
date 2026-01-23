@@ -81,7 +81,7 @@ export default function ResumePage() {
             </h1>
             <a
               href="/resume.pdf"
-              download
+              download="Koen_Sakamoto_Resume.pdf"
               className="inline-flex items-center gap-3 px-5 py-3 text-lg bg-accent text-accent-foreground font-medium rounded-lg border-2 border-border shadow-[4px_4px_0px_0px] shadow-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px] transition-all"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -100,7 +100,7 @@ export default function ResumePage() {
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-3">
                 <div>
                   <h3 className="font-bold text-xl text-foreground">University of Utah</h3>
-                  <p className="text-accent text-lg">Bachelor of Science in Computer Science</p>
+                  <p className="text-accent text-lg">Bachelor of Science in Computer Engineering | GPA: 3.7</p>
                 </div>
                 <span className="text-base text-muted-foreground">Expected May 2027</span>
               </div>

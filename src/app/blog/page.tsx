@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Blog | Koen Sakamoto",
-  description: "Thoughts on software, hardware, and everything in between.",
+  description: "Writing about code, projects, and learning.",
 };
 
 export default function BlogPage() {
@@ -16,7 +16,7 @@ export default function BlogPage() {
             Blog
           </h1>
           <p className="text-muted-foreground text-xl mb-16">
-            Thoughts on software, hardware, and everything in between.
+            Writing about code, projects, and learning.
           </p>
 
           {posts.length === 0 ? (

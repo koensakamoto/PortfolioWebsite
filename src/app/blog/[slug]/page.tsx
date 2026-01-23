@@ -1,6 +1,12 @@
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import "highlight.js/styles/github-dark.css";
 
 export async function generateStaticParams() {
   const posts = getAllPosts();
@@ -36,41 +42,9 @@ export default async function BlogPostPage({
     notFound();
   }
 
-  // Simple markdown to HTML conversion
-  const contentHtml = post.content
-    .split("\n")
-    .map((line) => {
-      // Headers
-      if (line.startsWith("### ")) {
-        return `<h3 class="text-lg font-bold text-foreground mt-6 mb-3">${line.slice(4)}</h3>`;
-      }
-      if (line.startsWith("## ")) {
-        return `<h2 class="text-xl font-bold text-foreground mt-8 mb-4">${line.slice(3)}</h2>`;
-      }
-      if (line.startsWith("# ")) {
-        return `<h1 class="text-2xl font-bold text-foreground mt-8 mb-4">${line.slice(2)}</h1>`;
-      }
-      // List items
-      if (line.startsWith("- ")) {
-        return `<li class="ml-4 text-foreground">${line.slice(2)}</li>`;
-      }
-      if (line.match(/^\d+\. /)) {
-        return `<li class="ml-4 text-foreground list-decimal">${line.replace(/^\d+\. /, "")}</li>`;
-      }
-      // Bold
-      line = line.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>');
-      // Empty lines become paragraph breaks
-      if (line.trim() === "") {
-        return "<br />";
-      }
-      // Regular paragraphs
-      return `<p class="text-foreground mb-4">${line}</p>`;
-    })
-    .join("\n");
-
   return (
     <main className="flex-1 pt-32 pb-24">
-      <div className="max-w-5xl mx-auto px-8">
+      <div className="max-w-4xl mx-auto px-8">
         <Link
           href="/blog"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
@@ -93,21 +67,21 @@ export default async function BlogPostPage({
         </Link>
 
         <article>
-          <header className="mb-8">
+          <header className="mb-12">
             <div className="flex flex-wrap gap-2 mb-4">
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-2 py-1 text-xs font-medium bg-accent text-accent-foreground rounded"
+                  className="px-3 py-1.5 text-sm font-medium bg-accent text-accent-foreground rounded border-2 border-border"
                 >
                   {tag}
                 </span>
               ))}
             </div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+            <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4 leading-tight">
               {post.title}
             </h1>
-            <time className="text-sm text-muted-foreground">
+            <time className="text-base text-muted-foreground">
               {new Date(post.date).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
@@ -116,10 +90,86 @@ export default async function BlogPostPage({
             </time>
           </header>
 
-          <div
-            className="prose prose-lg max-w-none"
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
-          />
+          <div className="prose-custom">
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[
+                rehypeHighlight,
+                rehypeSlug,
+                [rehypeAutolinkHeadings, { behavior: "wrap" }],
+              ]}
+              components={{
+                h1: ({ children }) => (
+                  <h1 className="text-4xl font-bold text-foreground mt-12 mb-6 pb-3 border-b-2 border-border">
+                    {children}
+                  </h1>
+                ),
+                h2: ({ children }) => (
+                  <h2 className="text-3xl font-bold text-foreground mt-10 mb-5">
+                    {children}
+                  </h2>
+                ),
+                h3: ({ children }) => (
+                  <h3 className="text-2xl font-semibold text-foreground mt-8 mb-4">
+                    {children}
+                  </h3>
+                ),
+                p: ({ children }) => (
+                  <p className="text-foreground text-lg leading-relaxed mb-6">
+                    {children}
+                  </p>
+                ),
+                ul: ({ children }) => (
+                  <ul className="list-disc list-inside space-y-2 mb-6 text-foreground text-lg">
+                    {children}
+                  </ul>
+                ),
+                ol: ({ children }) => (
+                  <ol className="list-decimal list-inside space-y-2 mb-6 text-foreground text-lg">
+                    {children}
+                  </ol>
+                ),
+                li: ({ children }) => (
+                  <li className="ml-4 leading-relaxed">{children}</li>
+                ),
+                code: ({ className, children, ...props }) => {
+                  const isInline = !className;
+                  return isInline ? (
+                    <code
+                      className="px-2 py-1 bg-accent/50 text-accent-foreground rounded text-base font-mono border border-border"
+                      {...props}
+                    >
+                      {children}
+                    </code>
+                  ) : (
+                    <code className={className} {...props}>
+                      {children}
+                    </code>
+                  );
+                },
+                pre: ({ children }) => (
+                  <pre className="mb-6 overflow-x-auto rounded-lg border-2 border-border bg-[#0d1117] p-4 shadow-[4px_4px_0px_0px] shadow-shadow">
+                    {children}
+                  </pre>
+                ),
+                hr: () => (
+                  <hr className="my-12 border-t-2 border-border" />
+                ),
+                strong: ({ children }) => (
+                  <strong className="font-bold text-foreground">
+                    {children}
+                  </strong>
+                ),
+                blockquote: ({ children }) => (
+                  <blockquote className="border-l-4 border-accent pl-4 italic text-muted-foreground my-6">
+                    {children}
+                  </blockquote>
+                ),
+              }}
+            >
+              {post.content}
+            </ReactMarkdown>
+          </div>
         </article>
       </div>
     </main>

@@ -20,7 +20,7 @@ export function ProjectImages({ images, title }: ProjectImagesProps) {
 
   return (
     <>
-      <div className="flex justify-around items-end gap-4 sm:gap-6 md:gap-10 px-6 sm:px-10 md:px-16 py-6 md:py-8 bg-muted border-b-2 border-border">
+      <div className="flex justify-around items-end gap-4 sm:gap-6 md:gap-10 px-6 sm:px-10 md:px-16 py-4 md:py-6 bg-muted border-b-2 border-border">
         {images.map((img, i) => (
           <button
             key={i}
@@ -33,7 +33,7 @@ export function ProjectImages({ images, title }: ProjectImagesProps) {
               width={1242}
               height={2688}
               sizes="(max-width: 640px) 100px, (max-width: 768px) 140px, (max-width: 1024px) 180px, 220px"
-              className="h-64 sm:h-80 md:h-96 lg:h-[26rem] w-auto object-contain"
+              className="w-24 sm:w-32 md:w-40 lg:w-48 h-auto"
             />
           </button>
         ))}

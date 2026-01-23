@@ -8,7 +8,7 @@ export default function Home() {
       <Hero />
 
       {/* Quick links */}
-      <section className="py-20">
+      <section className="py-12">
         <div className="max-w-5xl mx-auto px-8">
           <div className="grid sm:grid-cols-3 gap-8">
             <Link
