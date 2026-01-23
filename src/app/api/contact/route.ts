@@ -1,7 +1,10 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Initialize Resend lazily to avoid build-time errors
+function getResendClient() {
+  return new Resend(process.env.RESEND_API_KEY);
+}
 
 // Simple in-memory rate limiting (resets on server restart)
 const rateLimit = new Map<string, { count: number; resetTime: number }>();
@@ -73,6 +76,7 @@ export async function POST(request: NextRequest) {
 
   // Send email
   try {
+    const resend = getResendClient();
     await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
       to: "koensakamoto6@gmail.com",
