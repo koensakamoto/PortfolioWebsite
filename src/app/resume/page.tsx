@@ -219,8 +219,6 @@ export default function ResumePage() {
                 "CI/CD",
                 "Cloud Deployment",
                 "Security",
-                "LLM Systems",
-                "Real-time Systems",
                 "WebSockets",
               ].map((item) => (
                 <span
