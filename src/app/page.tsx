@@ -18,13 +18,13 @@ export default function Home() {
               <h3 className="text-lg font-bold text-foreground mb-2">Projects</h3>
               <p className="text-base text-muted-foreground">See what I&apos;ve built</p>
             </Link>
-            <Link
+            {/* <Link
               href="/resume"
               className="p-8 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px] transition-all text-center"
             >
               <h3 className="text-lg font-bold text-foreground mb-2">Resume</h3>
               <p className="text-base text-muted-foreground">Experience & skills</p>
-            </Link>
+            </Link> */}
             <Link
               href="/contact"
               className="p-8 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px] transition-all text-center"
