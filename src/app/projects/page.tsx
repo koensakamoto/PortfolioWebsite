@@ -33,7 +33,6 @@ const projects: Project[] = [
     ],
     tags: ["FastAPI", "React", "Vite", "Tailwind CSS", "MongoDB", "Selenium"],
     github: "https://github.com/koensakamoto/CrimsonBites",
-    live: "https://crimsonbites.com/",
     image: "/crimsonbites.png",
     aspectRatio: "16/10",
   },

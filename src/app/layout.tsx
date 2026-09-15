@@ -18,13 +18,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Koen Sakamoto | Portfolio",
   description:
-    "Computer Engineering student and aspiring engineer. Building software and exploring hardware.",
-  keywords: ["portfolio", "developer", "software engineer", "computer engineering"],
+    "Electrical Engineering student and aspiring engineer. Building software and exploring hardware.",
+  keywords: ["portfolio", "developer", "software engineer", "electrical engineering"],
   authors: [{ name: "Koen Sakamoto" }],
   openGraph: {
     title: "Koen Sakamoto | Portfolio",
     description:
-      "Computer Engineering student and aspiring engineer. Building software and exploring hardware.",
+      "Electrical Engineering student and aspiring engineer. Building software and exploring hardware.",
     type: "website",
   },
 };

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export const metadata = {
   title: "About | Koen Sakamoto",
-  description: "Get to know Koen Sakamoto - Computer Engineering student and developer.",
+  description: "Get to know Koen Sakamoto - Electrical Engineering student and developer.",
 };
 
 export default function AboutPage() {
@@ -26,7 +26,7 @@ export default function AboutPage() {
                 About Me
               </h1>
               <p className="text-lg text-foreground leading-relaxed">
-                I&apos;m a junior Computer Engineering student at the University of Utah focused on
+                I&apos;m a junior Electrical Engineering student at the University of Utah focused on
                 building clean, reliable software that solves real problems.
               </p>
               <p className="text-lg text-foreground leading-relaxed">
@@ -47,12 +47,12 @@ export default function AboutPage() {
             <h2 className="text-4xl font-bold text-foreground mb-10">Currently</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
               <div className="p-8 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow">
-                <h3 className="text-base font-medium text-muted-foreground mb-3">Working on</h3>
-                <p className="text-xl text-foreground font-medium">Refactoring Old Projects</p>
+                <h3 className="text-base font-medium text-muted-foreground mb-3">Interning at</h3>
+                <p className="text-xl text-foreground font-medium">Peraton</p>
               </div>
               <div className="p-8 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow">
-                <h3 className="text-base font-medium text-muted-foreground mb-3">Learning</h3>
-                <p className="text-xl text-foreground font-medium">C++</p>
+                <h3 className="text-base font-medium text-muted-foreground mb-3">Currently debugging</h3>
+                <p className="text-xl text-foreground font-medium">Probably Something</p>
               </div>
               <div className="p-8 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow">
                 <h3 className="text-base font-medium text-muted-foreground mb-3">Reading</h3>

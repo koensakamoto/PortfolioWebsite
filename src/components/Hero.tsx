@@ -45,7 +45,7 @@ export function Hero() {
               Koen Sakamoto
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
-              Computer Engineering student at the University of Utah. I make code do cool things.
+              Electrical Engineering student at the University of Utah. I make code do cool things.
             </p>
             <Link
               href="/about"

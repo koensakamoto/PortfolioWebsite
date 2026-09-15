@@ -100,7 +100,7 @@ export default function ResumePage() {
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-3">
                 <div>
                   <h3 className="font-bold text-xl text-foreground">University of Utah</h3>
-                  <p className="text-accent text-lg">Bachelor of Science in Computer Engineering | GPA: 3.7</p>
+                  <p className="text-accent text-lg">Bachelor of Science in Electrical Engineering | GPA: 3.7</p>
                 </div>
                 <span className="text-base text-muted-foreground">Expected May 2027</span>
               </div>
