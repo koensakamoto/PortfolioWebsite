@@ -86,7 +86,7 @@ export function Contact() {
 
             <div className="space-y-4">
               <a
-                href="mailto:koensakamoto5@gmail.com"
+                href="mailto:koensakamoto6@gmail.com"
                 className="flex items-center gap-3 p-4 border-2 border-border rounded-lg bg-background shadow-[4px_4px_0px_0px] shadow-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px] transition-all"
               >
                 <span className="p-2 bg-accent text-accent-foreground rounded">
@@ -95,7 +95,7 @@ export function Contact() {
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                   </svg>
                 </span>
-                <span className="font-medium">koensakamoto5@gmail.com</span>
+                <span className="font-medium">koensakamoto6@gmail.com</span>
               </a>
 
               <a
